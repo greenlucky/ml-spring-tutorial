@@ -21,7 +21,7 @@ public class VerificationTokenTest {
     }
 
     @Test
-    public void testExpiratedCalculateDate() throws Exception {
+    public void testExpiredCalculateDate() throws Exception {
         int expiryTestMinutes = 60;
         long aspect = new Date().getTime() + 60 * 60 * 1000;
         long actual = token.calculateExpiryDate(expiryTestMinutes);

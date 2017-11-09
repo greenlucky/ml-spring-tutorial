@@ -38,9 +38,9 @@ public class UserValidationTest {
     }
 
     @Test
-    public void testAnnotaionPasswordMatches() throws Exception {
-        userDto.setPassword("");
-        userDto.setConfirmPassword("");
+    public void testAnnotationPasswordMatches() throws Exception {
+        userDto.setPassword("123456");
+        userDto.setConfirmPassword("123457");
         Set<ConstraintViolation<UserDto>> constraintViolations = validator.validate(userDto);
 
         constraintViolations.forEach(msg -> System.out.println(msg.getMessage()));

@@ -1,5 +1,6 @@
 package com.ml.spring.tuto.aae.persistance.model;
 
+import com.ml.spring.tuto.aae.persistance.model.dto.UserDto;
 import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
@@ -27,6 +28,12 @@ public class User {
     public User() {
         super();
         this.enabled = false;
+    }
+
+    public User(UserDto userDto) {
+        this.username = userDto.getUsername();
+        this.email = userDto.getEmail();
+        this.password = userDto.getPassword();
     }
 
     public String getId() {
@@ -59,6 +66,14 @@ public class User {
 
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override

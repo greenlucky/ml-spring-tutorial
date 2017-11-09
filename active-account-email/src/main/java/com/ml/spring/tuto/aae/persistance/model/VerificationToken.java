@@ -25,6 +25,12 @@ public class VerificationToken {
         this.expiryDate = calculateExpiryDate(EXPIRATION);
     }
 
+    public VerificationToken(String token, User user) {
+        this.user = user;
+        this.token = token;
+        expiryDate = calculateExpiryDate(EXPIRATION);
+    }
+
     public Long getId() {
         return id;
     }
@@ -62,6 +68,12 @@ public class VerificationToken {
         cal.setTimeInMillis(new Date().getTime());
         cal.add(Calendar.MINUTE, expiryTestMinutes);
         return cal.getTime().getTime();
+    }
+
+    public boolean isValidToken() {
+        final Calendar cal = Calendar.getInstance();
+        cal.setTimeInMillis(new Date().getTime());
+        return (expiryDate - cal.getTime().getTime() > 0);
     }
 
     @Override
