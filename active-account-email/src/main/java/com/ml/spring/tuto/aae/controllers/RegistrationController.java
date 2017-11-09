@@ -67,14 +67,34 @@ public class RegistrationController {
 
         if(verToken == null)
             return new ResponseEntity<Object>("Token is not valid",HttpStatus.EXPECTATION_FAILED);
-        /*if(verToken.isValidToken()) {
+
+        if(verToken.isValidToken()) {
             User user = verToken.getUser();
             user.setEnabled(true);
             userService.updateUserAccount(user);
-        }*/
+        }
 
-        return new ResponseEntity<Object>(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @GetMapping(URI + "/resend-token")
+    public ResponseEntity<Object> resendRegistrationToken(@RequestParam(value = "token") String currentToken,
+                                                          final HttpServletRequest request) {
+
+        if(currentToken.isEmpty() || currentToken == null)
+            return new ResponseEntity<Object>("Token is not null", HttpStatus.EXPECTATION_FAILED);
+
+        final VerificationToken verToken = tokenService.getByToken(currentToken);
+
+        if(verToken == null)
+            return new ResponseEntity<Object>("Token is not valid",HttpStatus.EXPECTATION_FAILED);
+
+        User registered = verToken.getUser();
+        eventPublisher.publishEvent(new OnRegistrationCompleteEvent(registered, request.getLocale(), appUrl(request)));
+        LOGGER.info("Resent token to {}", registered.getEmail());
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
     private String appUrl(HttpServletRequest request) {
         return "http://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
     }

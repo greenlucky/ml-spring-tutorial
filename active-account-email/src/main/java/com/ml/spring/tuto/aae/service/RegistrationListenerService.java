@@ -11,6 +11,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;
+import java.util.concurrent.CompletableFuture;
 
 @Component
 public class RegistrationListenerService implements ApplicationListener<OnRegistrationCompleteEvent>{
@@ -25,17 +26,18 @@ public class RegistrationListenerService implements ApplicationListener<OnRegist
 
     @Override
     public void onApplicationEvent(OnRegistrationCompleteEvent event) {
-        this.confirmRegistration(event);
+        CompletableFuture.supplyAsync(() -> this.confirmRegistration(event));
     }
 
-    private void confirmRegistration(OnRegistrationCompleteEvent event) {
+    private Object confirmRegistration(OnRegistrationCompleteEvent event) {
+
         User user = event.getUser();
         String token = UUID.randomUUID().toString();
         service.createVerification(user, token);
 
         String recipientAddress = user.getEmail();
         String subject = "Registration Confirmation";
-        String confirmUrl = event.getAppUrl() + "/registration-confirm?token=" + token;
+        String confirmUrl = event.getAppUrl() + "/register/confirm?token=" + token;
         String message = "Hi " + user.getUsername() + "</br>";
         message += "This is email active your account on our website. Please lick below link to active. rn" + confirmUrl;
 
@@ -48,5 +50,7 @@ public class RegistrationListenerService implements ApplicationListener<OnRegist
         mailSender.send(email);
 
         LOGGER.info("Sent mail to {} with content: {}", user.getEmail(), message);
+
+        return null;
     }
 }

@@ -11,7 +11,7 @@ public class VerificationTokenService {
     @Autowired
     private VerificationTokenRepository tokenRepository;
 
-    public VerificationToken getVerificationToken(long id) {
+    public VerificationToken getById(long id) {
         return tokenRepository.findOne(id);
     }
 

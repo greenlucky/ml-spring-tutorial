@@ -29,7 +29,7 @@ public class UserServiceTest extends BaseTest{
         String token = UUID.randomUUID().toString();
         userService.createVerification(user, token);
 
-        VerificationToken verToken = tokenService.getVerificationToken(1L);
+        VerificationToken verToken = tokenService.getById(1L);
         assertEquals(token, verToken.getToken());
     }
 
