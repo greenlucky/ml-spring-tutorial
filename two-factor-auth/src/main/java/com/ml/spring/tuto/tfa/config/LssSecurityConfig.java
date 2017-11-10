@@ -47,6 +47,7 @@ public class LssSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .and()
                 .formLogin()
+                .defaultSuccessUrl("/login-success")
                 .authenticationDetailsSource(authenticationDetailsSource)
                 .permitAll();
     }

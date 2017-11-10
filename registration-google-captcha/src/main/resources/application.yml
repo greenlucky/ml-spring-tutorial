@@ -1,0 +1,8 @@
+server:
+  port: 8091
+
+google:
+  recaptcha:
+    key:
+      site: 6Lf6Xg8UAAAAABZq5gVYDUmSrxayh2tVIL4AQpDY
+      secret: 6Lf6Xg8UAAAAABCv8rJRUZvdBL7Iswon0eZ8iiWn
