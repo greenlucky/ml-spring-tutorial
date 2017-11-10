@@ -9,6 +9,7 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>active-account-email</module>
+        <module>two-factor-auth</module>
     </modules>
 
 </project>

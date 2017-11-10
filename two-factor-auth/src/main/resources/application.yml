@@ -1,0 +1,12 @@
+server:
+  port: 8090
+
+security:
+  user:
+    name: admin
+    password: 123456
+
+hibernate:
+  dialect: org.hibernate.dialect.MySQL5Dialect
+  show_sql: true
+  hbm2ddl.auto: create
