@@ -10,6 +10,7 @@
     <modules>
         <module>active-account-email</module>
         <module>two-factor-auth</module>
+        <module>registration-google-captcha</module>
     </modules>
 
 </project>
