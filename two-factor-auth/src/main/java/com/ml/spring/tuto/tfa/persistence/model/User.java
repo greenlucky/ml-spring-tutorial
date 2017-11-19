@@ -167,7 +167,8 @@ public class User implements UserDetails{
                 ", enabled=" + enabled +
                 ", isUsing2FA=" + isUsing2FA +
                 ", secret='" + secret + '\'' +
-                ", roles=" + roles +
+                ", roles=" + roles + '\'' +
+                ", authorities=" + getAuthorities() +
                 '}';
     }
 }

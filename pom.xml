@@ -11,6 +11,8 @@
         <module>active-account-email</module>
         <module>two-factor-auth</module>
         <module>registration-google-captcha</module>
+        <module>auth-accepted-location</module>
+        <module>completed-registration-journey</module>
     </modules>
 
 </project>

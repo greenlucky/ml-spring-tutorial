@@ -1,0 +1,24 @@
+server:
+  port: 8092
+security:
+  user:
+    password: 123456
+    name: admin
+
+support:
+  email: tntthao87@gmail.com
+
+spring:
+  mail:
+    host: smtp.gmail.com
+    port: 465
+    protocol: smtps
+    username: tntthao87@gmail.com
+    password: lam1986men1987
+    transport:
+      protocol: smtps
+    smtps:
+      auth: true
+      starttls:
+        enable: true
+      timeout: 60000
