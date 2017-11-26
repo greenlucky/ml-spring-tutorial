@@ -1,0 +1,6 @@
+server:
+  port: 8093
+security:
+  user:
+    name: admin
+    password: 123456

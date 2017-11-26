@@ -1,6 +1,10 @@
 package com.ml.spring.tuto.corej.persistence.model.dto;
 
+import com.ml.spring.tuto.corej.enums.RolesEnum;
 import com.ml.spring.tuto.corej.validation.PassMatching;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @PassMatching
 public class UserDto {
@@ -9,6 +13,7 @@ public class UserDto {
     private String email;
     private String password;
     private String confirmPassword;
+    private Set<RolesEnum> roles;
 
     public void setUsername(String username) {
         this.username = username;
@@ -40,5 +45,14 @@ public class UserDto {
 
     public String getConfirmPassword() {
         return confirmPassword;
+    }
+
+    public Set<RolesEnum> getRoles() {
+        return roles;
+    }
+
+    public void setRole(RolesEnum role) {
+        if (roles == null) roles = new HashSet<>();
+        this.roles.add(role);
     }
 }
